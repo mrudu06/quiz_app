@@ -1,4 +1,4 @@
-# Cricket Quiz App 🏏
+i# Cricket Quiz App 🏏
 
 A dynamic cricket quiz application that generates questions using real-world data from Cricsheet and the generative capabilities of Google's Gemini AI. User authentication and scoring are managed via a PostgreSQL database.
 
