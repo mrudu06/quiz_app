@@ -13,11 +13,13 @@ class GeminiService:
         self.client = genai.Client(api_key=self.api_key)
         self.model_name = model_name
 
-    def generate_quiz(self, data: str, offset: int, prompt: str) -> str:
+    def generate_quiz(self, prompt: str, data: str = None, offset: int = None) -> str:
         """
-        Generates quiz questions based on the provided data and prompt.
+        Generates quiz questions. If data is provided, uses it as context.
+        Otherwise, relies on the model's internal knowledge.
         """
-        full_prompt = f"""
+        if data:
+            full_prompt = f"""
 {prompt}
 
 ---
@@ -25,6 +27,9 @@ Data Context (Offset: {offset}):
 {data}
 ---
 """
+        else:
+            full_prompt = prompt
+
         try:
             response = self.client.models.generate_content(
                 model=self.model_name,
