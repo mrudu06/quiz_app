@@ -18,8 +18,8 @@ A dynamic cricket quiz application that generates questions using real-world dat
 - **Data Source**: [Cricsheet](https://cricsheet.org/) (JSON/YAML match data)
 - **AI Engine**: Google Gemini API
 - **Database**: PostgreSQL (for Users and Scores)
-- **Backend**: Python (Flask)
-- **Frontend**: (To be determined)
+- **Backend**: Python (Recommended for Data/AI integration)
+- **Frontend**: React + Vite
 
 ## Architecture
 
@@ -66,8 +66,12 @@ A dynamic cricket quiz application that generates questions using real-world dat
 
 ## �Setup
 
-*(Instructions to be added as development progresses)*
+### Frontend
+1. Navigate to the `frontend` directory: `cd frontend`
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
 
+### Backend (To be implemented)
 1. Clone the repository.
 2. Set up PostgreSQL database.
 3. Configure environment variables (`GEMINI_API_KEY`, `DB_CONNECTION_STRING`).
