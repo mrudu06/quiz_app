@@ -15,7 +15,7 @@ A dynamic cricket quiz application that generates questions using real-world dat
 - **AI Engine**: Google Gemini API
 - **Database**: PostgreSQL (for Users and Scores)
 - **Backend**: Python (Recommended for Data/AI integration)
-- **Frontend**: (To be determined)
+- **Frontend**: React + Vite
 
 ## 🏗️ Architecture
 
@@ -42,8 +42,12 @@ A dynamic cricket quiz application that generates questions using real-world dat
 
 ## 📝 Setup
 
-*(Instructions to be added as development progresses)*
+### Frontend
+1. Navigate to the `frontend` directory: `cd frontend`
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
 
+### Backend (To be implemented)
 1. Clone the repository.
 2. Set up PostgreSQL database.
 3. Configure environment variables (`GEMINI_API_KEY`, `DB_CONNECTION_STRING`).
