@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, Mail, Trophy, Star, Clock, Activity, LogOut, Edit2, Lock, Bell, X } from 'lucide-react';
+import API_URL from '../config';
 
 const Profile = () => {
   const { user, logout } = useAuth();
@@ -24,7 +25,7 @@ const Profile = () => {
         const headers = { 'Authorization': `Bearer ${token}` };
 
         // Fetch Stats
-        const historyRes = await fetch('http://localhost:5000/api/history', { headers });
+        const historyRes = await fetch(`${API_URL}/api/history`, { headers });
         if (historyRes.ok) {
           const history = await historyRes.json();
           const totalScore = history.reduce((acc, curr) => acc + curr.score, 0);
@@ -39,7 +40,7 @@ const Profile = () => {
         }
 
         // Fetch Settings
-        const userRes = await fetch('http://localhost:5000/api/user', { headers });
+        const userRes = await fetch(`${API_URL}/api/user`, { headers });
         if (userRes.ok) {
             const userData = await userRes.json();
             setNotificationsEnabled(userData.notifications_enabled);
@@ -63,7 +64,7 @@ const Profile = () => {
         setNotificationsEnabled(newState);
         
         const token = user?.token;
-        await fetch('http://localhost:5000/api/user/settings', {
+        await fetch(`${API_URL}/api/user/settings`, {
             method: 'PUT',
             headers: { 
                 'Authorization': `Bearer ${token}`,
@@ -88,7 +89,7 @@ const Profile = () => {
 
     try {
         const token = user?.token;
-        const response = await fetch('http://localhost:5000/api/change-password', {
+        const response = await fetch(`${API_URL}/api/change-password`, {
             method: 'POST',
             headers: { 
                 'Authorization': `Bearer ${token}`,

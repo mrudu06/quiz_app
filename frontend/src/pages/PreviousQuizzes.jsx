@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Clock, Trophy, Calendar, ChevronRight } from 'lucide-react';
+import API_URL from '../config';
 
 const PreviousQuizzes = () => {
   const [attempts, setAttempts] = useState([]);
@@ -13,7 +14,7 @@ const PreviousQuizzes = () => {
         const user = JSON.parse(localStorage.getItem('user'));
         const token = user?.token;
         
-        const response = await fetch('http://localhost:5000/api/history', {
+        const response = await fetch(`${API_URL}/api/history`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         

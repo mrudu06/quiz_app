@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CheckCircle, XCircle, ArrowLeft } from 'lucide-react';
+import API_URL from '../config';
 
 const QuizDetails = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const QuizDetails = () => {
         const user = JSON.parse(localStorage.getItem('user'));
         const token = user?.token;
         
-        const response = await fetch(`http://localhost:5000/api/history/${id}`, {
+        const response = await fetch(`${API_URL}/api/history/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         

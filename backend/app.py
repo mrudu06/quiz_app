@@ -6,6 +6,9 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 import os
 from dotenv import load_dotenv
 
+import time
+from sqlalchemy.exc import OperationalError
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -17,6 +20,23 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 CORS(app)
+
+# Retry DB connection
+def wait_for_db():
+    retries = 10
+    while retries > 0:
+        try:
+            with app.app_context():
+                db.engine.connect()
+            print("Database connected!")
+            return
+        except OperationalError:
+            print("Database not ready, waiting...")
+            time.sleep(5)
+            retries -= 1
+    print("Could not connect to database.")
+
+wait_for_db()
 
 @jwt.invalid_token_loader
 def invalid_token_callback(error):
@@ -310,4 +330,4 @@ def change_password():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)

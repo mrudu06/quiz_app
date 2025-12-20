@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Timer, CheckCircle, XCircle, Circle } from 'lucide-react';
+import API_URL from '../config';
 
 const Quiz = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Quiz = () => {
         
         console.log("Sending token:", token); // Debug log
 
-        const response = await fetch('http://localhost:5000/api/quiz', {
+        const response = await fetch(`${API_URL}/api/quiz`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -148,7 +149,7 @@ const Quiz = () => {
         const user = JSON.parse(localStorage.getItem('user'));
         const token = user?.token;
         
-        await fetch('http://localhost:5000/api/quiz/submit', {
+        await fetch(`${API_URL}/api/quiz/submit`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
