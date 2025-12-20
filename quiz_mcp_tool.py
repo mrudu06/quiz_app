@@ -58,23 +58,31 @@ class QuizToolController:
         except Exception as e:
             return f"Error: {str(e)}"
 
-    def generate_quiz_questions(self, data: str, offset: int, prompt: str) -> str:
+    def generate_quiz_questions(self, topic: str = "IPL 2025", count: int = 10, difficulty: str = "Medium") -> str:
         """
-        Uploads cricket data and a prompt to Gemini to generate quiz questions.
+        Generates creative cricket quiz questions using Gemini's internal knowledge.
+        Defaults to the most recent IPL season (IPL 2025).
 
         Args:
-            data: The cricket match data (JSON string or text) to be analyzed.
-            offset: The data offset (e.g., match ID or line number) to maintain context/history.
-            prompt: The instructions for Gemini on how to generate the questions.
-
-        Returns:
-            The generated quiz questions from Gemini.
+            topic: The specific cricket topic (default "IPL 2025").
+            count: Number of questions to generate (default 10).
+            difficulty: Difficulty level (Easy, Medium, Hard).
         """
         if not self.gemini_service:
             return "Error: GeminiService is not initialized. Check configuration."
 
+        prompt = (
+            f"Generate {count} creative, unique, and engaging multiple-choice quiz questions specifically about '{topic}'. "
+            f"Focus on the most recent season (e.g., IPL 2025) if applicable. "
+            f"Include interesting stats, dramatic moments, or specific match scenarios to make it creative. "
+            f"Difficulty: {difficulty}. "
+            f"Include the correct answer and a short explanation for why it is correct. "
+            f"Return the result in a structured JSON format."
+        )
+
         try:
-            result = self.gemini_service.generate_quiz(data, offset, prompt)
+            # We pass None for data and offset to use Gemini's internal knowledge
+            result = self.gemini_service.generate_quiz(prompt=prompt)
             return result
         except Exception as e:
             return f"Error: {str(e)}"
