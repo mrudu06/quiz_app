@@ -2,7 +2,7 @@
 
 LearnEx is a modern web application designed to enhance the learning experience by combining structured course content with AI-driven interactive tools. It features a React-based frontend and a Flask backend, integrating Google's Gemini AI to provide intelligent assistance.
 
-##  Key Features
+##  Key Features 
 
 *   **Course Management**: Browse available courses and lessons (seeded sample data available).
 *   **Interactive Study Mode**:
