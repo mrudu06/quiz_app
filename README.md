@@ -5,7 +5,7 @@ LearnEx is a modern web application designed to enhance the learning experience 
 ##  Key Features 
 
 *   **Course Management**: Browse available courses and lessons (seeded sample data available).
-*   **Interactive Study Mode**:
+*   **Interactive Study Mode**: 
     *   **PDF Viewer**: Upload and read PDF study materials directly in the app.
     *   **AI Tutor**: Ask questions about the currently open PDF document. The AI (Gemini) reads the document context and provides relevant answers.
 *   **Adaptive Quizzes**:
